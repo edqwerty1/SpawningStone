@@ -1,0 +1,60 @@
+<div class="container">
+
+  <div class="jumbotron text-center">
+    <h1>Spells!</h1>
+    <p class="lead">
+      <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
+      Always a pleasure scaffolding your apps.
+    </p>
+  </div>
+
+  <label>Name </label>  <input type="text" ng-model="spells.filters.name">
+  <label>Level </label> <input type="text" ng-model="spells.filters.level">
+  <label>Bard:
+    <input type="checkbox" ng-model="spells.filters.bard">
+  </label>
+  <label>Cleric:
+    <input type="checkbox" ng-model="spells.filters.cleric">
+  </label>
+  <label>Druid:
+    <input type="checkbox" ng-model="spells.filters.druid">
+  </label>
+  <label>Paladin:
+    <input type="checkbox" ng-model="spells.filters.paladin">
+  </label>
+  <label>Ranger:
+    <input type="checkbox" ng-model="spells.filters.ranger">
+  </label>
+  <label>Sorcerer:
+    <input type="checkbox" ng-model="spells.filters.sorcerer">
+  </label>
+  <label>Warlock:
+    <input type="checkbox" ng-model="spells.filters.warlock">
+  </label>
+  <label>Wizard:
+    <input type="checkbox" ng-model="spells.filters.wizard">
+  </label>
+  <div class="row">
+    <accordion close-others="false">
+      <accordion-group ng-repeat="spell in spells.spells | filter:{
+      Name: spells.filters.name,
+      Level: spells.filters.level,
+      Bard:   spells.filters.bard,
+      Cleric:   spells.filters.cleric,
+      Druid:   spells.filters.druid,
+      Paladin:   spells.filters.paladin,
+      Ranger:   spells.filters.ranger,
+      Sorcerer:   spells.filters.sorcerer,
+      Warlock:   spells.filters.warlock,
+      Wizard:   spells.filters.wizard}
+       |orderBy:'Name'
+      ">
+        <accordion-heading>
+          {{spell.Name}} <div class="pull-right">Level: {{spell.Level}}</div>
+          </accordion-heading>
+        {{spell.Description}}
+      </accordion-group>
+    </accordion>
+  </div>
+
+</div>
