@@ -14,7 +14,7 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('spells', {
+      .state('spell', {
         url: "/spells",
         templateUrl: 'app/spells/spells.html',
         controller: 'SpellsController',

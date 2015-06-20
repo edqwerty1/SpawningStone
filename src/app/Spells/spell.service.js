@@ -13,7 +13,7 @@
 
     function getSpells() {
       $http.defaults.useXDomain = true;
-      var resource = $resource('http://spawningstone.cloudapp.net/Spells.svc/');
+      var resource = $resource('http://spawningstone.cloudapp.net/spells.svc/');
       return resource.query();
     }
   }
