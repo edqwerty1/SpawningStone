@@ -34,6 +34,17 @@
   <label>Wizard:
     <input type="checkbox" ng-model="spells.filters.wizard">
   </label>
+  <div>
+    <button type="button" class="btn btn-primary" ng-click="spells.saveSpells()">
+      Save my spells
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="spells.filterSpells()">
+      Show my spells
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="spells.showAll()">
+      Show all
+    </button>
+  </div>
   <div class="row">
     <accordion close-others="false">
       <accordion-group ng-repeat="spell in spells.spells | filter:{
@@ -50,6 +61,7 @@
        |orderBy:['Level','Name']
       ">
         <accordion-heading>
+          <input type="checkbox" ng-checked="spells.isSaved(spell.Name)" ng-click="spells.saveSpell(spell.Name)">
           <b>{{::spell.Name}}</b>
           <div  class="pull-right">
           <b>Level:</b> {{::spell.Level}}</span>

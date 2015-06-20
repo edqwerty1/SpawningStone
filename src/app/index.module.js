@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('spawningStone', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap']);
+    .module('spawningStone', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']);
 
 })();
