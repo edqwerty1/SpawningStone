@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastr, $httpProvider) {
+  function config($logProvider, toastr, $httpProvider, $resourceProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -19,6 +19,7 @@
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
+    $resourceProvider.defaults.stripTrailingSlashes = false;
   }
 
 })();
