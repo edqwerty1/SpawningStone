@@ -47,12 +47,36 @@
       Sorcerer:   spells.filters.sorcerer,
       Warlock:   spells.filters.warlock,
       Wizard:   spells.filters.wizard}
-       |orderBy:'Name'
+       |orderBy:['Level','Name']
       ">
         <accordion-heading>
-          {{spell.Name}} <div class="pull-right">Level: {{spell.Level}}</div>
+          <b>{{::spell.Name}}</b>
+          <div  class="pull-right">
+          <b>Level:</b> {{::spell.Level}}</span>
+            </div>
           </accordion-heading>
-        {{spell.Description}}
+        <div><b>Class: </b>
+            <span ng-if="::spell.Bard">Bard </span>
+            <span ng-if="::spell.Cleric">Cleric </span>
+            <span ng-if="::spell.Druid">Druid </span>
+            <span ng-if="::spell.Paladin">Paladin </span>
+            <span ng-if="::spell.Ranger">Ranger </span>
+            <span ng-if="::spell.Sorcerer">Sorcerer </span>
+            <span ng-if="::spell.Warlock">Warlock </span>
+            <span ng-if="::spell.Wizard">Wizard </span>
+          </div>
+        <div><b>Casting Time: </b> {{::spell.CastingTime}}</div>
+        <div><b>Duration: </b>
+          <span ng-if="::spell.Concentration">(Concentration) </span>
+          {{::spell.Duration}}</div>
+        <div><b>School: </b> {{::spell.School}}</div>
+        <div><b>Components: </b>
+          <span ng-if="::spell.Somatic">S </span>
+          <span ng-if="::spell.Verbal">V </span>
+          <span ng-if="::spell.Material">M </span>
+          <span ng-if="::spell.MaterialText">({{::spell.MaterialText}}) </span>
+          </div>
+        {{::spell.Description}}
       </accordion-group>
     </accordion>
   </div>
