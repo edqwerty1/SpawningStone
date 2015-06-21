@@ -6,13 +6,15 @@
     .controller('SpellsController', SpellsController);
 
   /** @ngInject */
-  function SpellsController(spellService, $filter, $cookieStore) {
+  function SpellsController(spellService, $filter, $cookieStore, toastr) {
     var vm = this;
-    vm.spells ={};
+    vm.spells =[];
 
     vm.savedSpells = $cookieStore.get('savedSpells') || [];
-    console.log(vm.savedSpells);
-    vm.spells =  spellService.getSpells();
+ //   vm.spells =  spellService.getSpells();
+      vm.spells =  spellService.getLocalSpells();
+
+
     vm.spellStore = vm.spells;
 
     vm.isSaved = function(spellName){
@@ -32,6 +34,7 @@
 
     vm.saveSpells = function(){
       $cookieStore.put('savedSpells',  vm.savedSpells);
+      toastr.info("Spells Saved !")
     };
 
     vm.filterSpells = function(){

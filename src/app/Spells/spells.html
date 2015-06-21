@@ -1,4 +1,7 @@
 <div class="container">
+  <div>
+    <acme-navbar creationDate="main.creationDate" />
+  </div>
 
   <div class="jumbotron text-center">
     <h1>Spells!</h1>
@@ -10,30 +13,7 @@
 
   <label>Name </label>  <input type="text" ng-model="spells.filters.name">
   <label>Level </label> <input type="text" ng-model="spells.filters.level">
-  <label>Bard:
-    <input type="checkbox" ng-model="spells.filters.bard">
-  </label>
-  <label>Cleric:
-    <input type="checkbox" ng-model="spells.filters.cleric">
-  </label>
-  <label>Druid:
-    <input type="checkbox" ng-model="spells.filters.druid">
-  </label>
-  <label>Paladin:
-    <input type="checkbox" ng-model="spells.filters.paladin">
-  </label>
-  <label>Ranger:
-    <input type="checkbox" ng-model="spells.filters.ranger">
-  </label>
-  <label>Sorcerer:
-    <input type="checkbox" ng-model="spells.filters.sorcerer">
-  </label>
-  <label>Warlock:
-    <input type="checkbox" ng-model="spells.filters.warlock">
-  </label>
-  <label>Wizard:
-    <input type="checkbox" ng-model="spells.filters.wizard">
-  </label>
+
   <div>
     <button type="button" class="btn btn-primary" ng-click="spells.saveSpells()">
       Save my spells
@@ -49,15 +29,7 @@
     <accordion close-others="false">
       <accordion-group ng-repeat="spell in spells.spells | filter:{
       Name: spells.filters.name,
-      Level: spells.filters.level,
-      Bard:   spells.filters.bard,
-      Cleric:   spells.filters.cleric,
-      Druid:   spells.filters.druid,
-      Paladin:   spells.filters.paladin,
-      Ranger:   spells.filters.ranger,
-      Sorcerer:   spells.filters.sorcerer,
-      Warlock:   spells.filters.warlock,
-      Wizard:   spells.filters.wizard}
+      Level: spells.filters.level}
        |orderBy:['Level','Name']
       ">
         <accordion-heading>
@@ -68,14 +40,9 @@
             </div>
           </accordion-heading>
         <div><b>Class: </b>
-            <span ng-if="::spell.Bard">Bard </span>
-            <span ng-if="::spell.Cleric">Cleric </span>
-            <span ng-if="::spell.Druid">Druid </span>
-            <span ng-if="::spell.Paladin">Paladin </span>
-            <span ng-if="::spell.Ranger">Ranger </span>
-            <span ng-if="::spell.Sorcerer">Sorcerer </span>
-            <span ng-if="::spell.Warlock">Warlock </span>
-            <span ng-if="::spell.Wizard">Wizard </span>
+            <span ng-repeat="class in spell.Classes">
+              {{::class}}
+            </span>
           </div>
         <div><b>Casting Time: </b> {{::spell.CastingTime}}</div>
         <div><b>Duration: </b>
@@ -86,7 +53,7 @@
           <span ng-if="::spell.Somatic">S </span>
           <span ng-if="::spell.Verbal">V </span>
           <span ng-if="::spell.Material">M </span>
-          <span ng-if="::spell.MaterialText">({{::spell.MaterialText}}) </span>
+          <span ng-if="::spell.Material">({{::spell.MaterialText}}) </span>
           </div>
         {{::spell.Description}}
       </accordion-group>
