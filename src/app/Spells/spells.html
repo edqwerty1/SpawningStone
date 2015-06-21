@@ -11,9 +11,18 @@
     </p>
   </div>
 
-  <label>Name </label>  <input type="text" ng-model="spells.filters.name">
-  <label>Level </label> <input type="text" ng-model="spells.filters.level">
-
+  <div>
+    <div class="col-md-4"><label>Name </label>  <input type="text" ng-model="spells.filters.name"></div>
+    <div class="col-md-4"><label>Level </label> <input type="text" ng-model="spells.filters.level"></div>
+    <div class="col-md-4">
+      <ui-select ng-model="spells.classSelected">
+        <ui-select-match>{{$select.selected}}</ui-select-match>
+        <ui-select-choices repeat="class in spells.classes | filter: $select.search">
+          <div ng-bind-html="class | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+  </div>
   <div>
     <button type="button" class="btn btn-primary" ng-click="spells.saveSpells()">
       Save my spells
@@ -29,21 +38,22 @@
     <accordion close-others="false">
       <accordion-group ng-repeat="spell in spells.spells | filter:{
       Name: spells.filters.name,
-      Level: spells.filters.level}
+      Level: spells.filters.level,
+      Classes: spells.classSelected}
        |orderBy:['Level','Name']
       ">
         <accordion-heading>
           <input type="checkbox" ng-checked="spells.isSaved(spell.Name)" ng-click="spells.saveSpell(spell.Name)">
           <b>{{::spell.Name}}</b>
           <div  class="pull-right">
-          <b>Level:</b> {{::spell.Level}}</span>
-            </div>
-          </accordion-heading>
+            <b>Level:</b> {{::spell.Level}}</span>
+          </div>
+        </accordion-heading>
         <div><b>Class: </b>
             <span ng-repeat="class in spell.Classes">
               {{::class}}
             </span>
-          </div>
+        </div>
         <div><b>Casting Time: </b> {{::spell.CastingTime}}</div>
         <div><b>Duration: </b>
           <span ng-if="::spell.Concentration">(Concentration) </span>
@@ -54,7 +64,7 @@
           <span ng-if="::spell.Verbal">V </span>
           <span ng-if="::spell.Material">M </span>
           <span ng-if="::spell.Material">({{::spell.MaterialText}}) </span>
-          </div>
+        </div>
         {{::spell.Description}}
       </accordion-group>
     </accordion>

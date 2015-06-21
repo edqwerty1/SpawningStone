@@ -14,9 +14,11 @@
  //   vm.spells =  spellService.getSpells();
       vm.spells =  spellService.getLocalSpells();
 
-
+    vm.classes = ["Bard","Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard" ];
+    vm.classSelected = "Bard";
     vm.spellStore = vm.spells;
-
+    vm.filters = {};
+    vm.filters.level = "Cantrip";
     vm.isSaved = function(spellName){
       return vm.savedSpells.indexOf(spellName) !== -1;
     };
@@ -27,19 +29,19 @@
         vm.savedSpells.push(spellName);
       }else {
         vm.savedSpells = $filter('filter')(vm.savedSpells, function(item) {
-          return !(item == spellName);
-        })
+          return (item !== spellName);
+        });
       }
     };
 
     vm.saveSpells = function(){
       $cookieStore.put('savedSpells',  vm.savedSpells);
-      toastr.info("Spells Saved !")
+      toastr.info("Spells Saved !");
     };
 
     vm.filterSpells = function(){
       vm.spells = $filter('filter')(vm.spells, function(item) {
-        return !(vm.savedSpells.indexOf(item.Name) ===-1);
+        return (vm.savedSpells.indexOf(item.Name) !==-1);
       })
     };
 

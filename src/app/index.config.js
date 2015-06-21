@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastr, $httpProvider, $resourceProvider) {
+  function config($logProvider, toastr, $httpProvider, $resourceProvider, uiSelectConfig) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -20,6 +20,8 @@
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $resourceProvider.defaults.stripTrailingSlashes = false;
+
+    uiSelectConfig.theme = 'selectize';
   }
 
 })();
